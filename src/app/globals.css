@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+@layer base {
+  :root, .dark {
+    --background: #050816;
+    --foreground: #ffffff;
+    
+    --card: #0B1120;
+    --card-foreground: #ffffff;
+    
+    --popover: #0B1120;
+    --popover-foreground: #ffffff;
+    
+    --primary: #2563EB;
+    --primary-foreground: #ffffff;
+    
+    --secondary: #1D4ED8;
+    --secondary-foreground: #ffffff;
+    
+    --muted: #0f172a;
+    --muted-foreground: #94A3B8;
+    
+    --accent: rgba(37, 99, 235, 0.1);
+    --accent-foreground: #3B82F6;
+    
+    --destructive: #ef4444;
+    
+    --border: rgba(255, 255, 255, 0.1);
+    --input: rgba(255, 255, 255, 0.1);
+    --ring: #3B82F6;
+    
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+  }
+  
+  .glass-card {
+    @apply bg-[#0B1120]/80 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-400;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  
+  .bg-aurora {
+    background: radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.15) 0%, rgba(5, 8, 22, 0) 60%);
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-33.33%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+}
