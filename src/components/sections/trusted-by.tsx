@@ -16,7 +16,7 @@ const companies = [
 export default function TrustedBySection() {
   return (
     <section className="py-20 border-y border-white/5 bg-background/50 relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-7xl mb-10 text-center">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl mb-10 text-center">
         <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
           Trusted by innovative companies worldwide
         </p>

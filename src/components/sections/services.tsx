@@ -84,7 +84,7 @@ export default function ServicesSection() {
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,18 +106,18 @@ export default function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           {services.map((service, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group glass-card rounded-2xl p-6 relative overflow-hidden"
+              className="group glass-card rounded-2xl p-6 relative overflow-hidden h-full flex flex-col"
             >
               {/* Hover Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="relative z-10">
+              <div className="relative z-10 flex-1 flex flex-col">
                 <div className={`w-12 h-12 rounded-xl mb-6 flex items-center justify-center bg-gradient-to-br ${service.color} bg-opacity-10 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform duration-500`}>
                   <service.icon className="h-6 w-6 text-white drop-shadow-md" />
                 </div>

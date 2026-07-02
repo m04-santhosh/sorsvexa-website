@@ -56,7 +56,7 @@ export default function PricingSection() {
     <section id="pricing" className="py-32 relative border-t border-white/5 bg-black">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
       
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
             Transparent <span className="text-gradient">Pricing</span>

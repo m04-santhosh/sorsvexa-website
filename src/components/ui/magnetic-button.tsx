@@ -41,7 +41,7 @@ export function MagneticButton({
       animate={{ x, y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={cn(
-        "relative overflow-hidden rounded-full bg-primary px-8 py-3 font-medium text-primary-foreground transition-colors hover:bg-blue-500",
+        "relative overflow-hidden rounded-full bg-primary px-8 py-3 min-h-[48px] font-medium text-primary-foreground transition-colors hover:bg-blue-500",
         className
       )}
       {...props}

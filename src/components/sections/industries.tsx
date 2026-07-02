@@ -26,7 +26,7 @@ const industries = [
 export default function IndustriesSection() {
   return (
     <section className="py-24 bg-black relative border-y border-white/5">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
             Industries We <span className="text-gradient">Elevate</span>

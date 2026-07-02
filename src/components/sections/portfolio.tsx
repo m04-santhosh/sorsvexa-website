@@ -191,7 +191,7 @@ const projects = [
 export default function PortfolioSection() {
   return (
     <section id="portfolio" className="py-32 relative">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="max-w-3xl">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">

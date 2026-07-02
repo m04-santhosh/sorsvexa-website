@@ -26,6 +26,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -35,16 +43,16 @@ export default function Navbar() {
         isScrolled ? "py-4" : "py-6"
       }`}
     >
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-50">
         <div
           className={`flex items-center justify-between rounded-full px-6 py-3 transition-all duration-300 ${
-            isScrolled
+            isScrolled || mobileMenuOpen
               ? "glass bg-background/60 border-white/10"
               : "bg-transparent border-transparent"
           }`}
         >
           {/* Logo */}
-          <Link href="/" className="relative z-10 flex items-center gap-2">
+          <Link href="/" className="relative z-10 flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <span className="font-heading font-bold text-white">S</span>
             </div>
@@ -67,51 +75,84 @@ export default function Navbar() {
           </nav>
 
           {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 relative z-10">
             <div className="hidden md:block">
               <Link href="#contact">
                 <MagneticButton>Book Consultation</MagneticButton>
               </Link>
             </div>
             <button
-              className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+              className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6 text-white" />
-              ) : (
-                <Menu className="h-6 w-6 text-white" />
-              )}
+              <AnimatePresence mode="wait">
+                {mobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="h-6 w-6" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="h-6 w-6" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute left-0 right-0 top-full mt-2 px-6 md:hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+            className="fixed inset-0 z-40 flex flex-col bg-[#050816]/95 backdrop-blur-2xl md:hidden"
           >
-            <div className="glass flex flex-col gap-4 rounded-3xl p-6">
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex-1 flex flex-col justify-center items-center gap-8 px-6 pt-20">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 + 0.1 }}
                   key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-white/80 transition-colors hover:text-white"
                 >
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-3xl font-heading font-bold text-white transition-colors hover:text-blue-400"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
-              <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="mt-4 block w-full">
-                <MagneticButton className="w-full justify-center">
-                  Book Consultation
-                </MagneticButton>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.1 + 0.1 }}
+                className="mt-8 w-full max-w-xs"
+              >
+                <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="block w-full">
+                  <MagneticButton className="w-full justify-center text-lg py-4">
+                    Book Consultation
+                  </MagneticButton>
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}

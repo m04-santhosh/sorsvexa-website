@@ -27,7 +27,7 @@ const testimonials = [
 export default function TestimonialsSection() {
   return (
     <section className="py-32 relative">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
             Trusted By <span className="text-gradient">Industry Leaders</span>
@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-5 px-5 md:mx-0 md:px-0">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -45,7 +45,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card rounded-3xl p-8 relative"
+              className="glass-card rounded-3xl p-8 relative min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center flex-shrink-0 flex flex-col justify-between"
             >
               <Quote className="absolute top-8 right-8 h-12 w-12 text-white/5" />
               
@@ -55,11 +55,11 @@ export default function TestimonialsSection() {
                 ))}
               </div>
               
-              <p className="text-lg text-white/90 mb-8 leading-relaxed">
+              <p className="text-lg text-white/90 mb-8 leading-relaxed relative z-10">
                 "{testimonial.content}"
               </p>
               
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 mt-auto">
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name} 

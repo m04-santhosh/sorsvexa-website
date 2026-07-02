@@ -77,7 +77,7 @@ export default function HeroSection() {
       
       <Particles />
 
-      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 relative z-10 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
           {/* Left Content */}
@@ -95,11 +95,11 @@ export default function HeroSection() {
               Sorsvexa AI Automation Agency
             </div>
             
-            <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+            <h1 className="font-heading text-[36px] md:text-[52px] lg:text-[64px] font-bold tracking-tight text-white leading-[1.1]">
               Transform Your Business With <span className="text-gradient">Intelligent AI</span> Automation
             </h1>
             
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+            <p className="text-[16px] lg:text-[18px] text-muted-foreground leading-relaxed max-w-xl">
               We build AI-powered websites, chatbots, CRM systems, WhatsApp automation, and business workflows that help businesses save time, increase revenue, and scale faster.
             </p>
             
@@ -125,7 +125,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.2 }}
-            className="relative h-[700px] w-full hidden lg:block"
+            className="relative h-[450px] sm:h-[550px] lg:h-[700px] w-full mt-10 lg:mt-0 scale-[0.7] sm:scale-[0.85] lg:scale-100 origin-top lg:origin-center"
           >
             {/* Background glowing orb for the dashboard */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none animate-pulse duration-1000" />

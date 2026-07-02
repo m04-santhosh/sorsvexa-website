@@ -45,7 +45,7 @@ export default function ProcessSection() {
     <section id="process" className="py-32 relative overflow-hidden">
       <div className="absolute right-0 top-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
       
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
             Our Proven <span className="text-gradient">Process</span>

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function FloatingButtons() {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-3 md:gap-4 scale-90 md:scale-100 origin-bottom-right">
       {/* WhatsApp Button */}
       <motion.a
         href="https://wa.me/917019820571"

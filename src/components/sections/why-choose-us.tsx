@@ -6,7 +6,7 @@ import { Zap, Layout, Brain, TrendingUp, Headset, Settings2, Target } from "luci
 export default function WhyChooseUsSection() {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
         <div className="mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
             Why Choose <span className="text-gradient">Sorsvexa</span>

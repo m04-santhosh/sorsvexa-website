@@ -18,7 +18,7 @@ export default function CTASection() {
       <div className="absolute inset-0 bg-blue-600/5" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Column: Contact Info */}
@@ -56,20 +56,22 @@ export default function CTASection() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <a href="tel:+917019820571">
-                <MagneticButton className="px-6 py-3">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <a href="tel:+917019820571" className="w-full sm:w-auto">
+                <MagneticButton className="w-full px-6 py-3">
                   Call Now
                 </MagneticButton>
               </a>
-              <a href="mailto:sorsvexa.agency@gmail.com">
-                <MagneticButton className="px-6 py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white">
+              <a href="mailto:sorsvexa.agency@gmail.com" className="w-full sm:w-auto">
+                <MagneticButton className="w-full px-6 py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white">
                   Send Email
                 </MagneticButton>
               </a>
-              <MagneticButton className="px-6 py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white">
-                Book Free Consultation
-              </MagneticButton>
+              <div className="w-full sm:w-auto">
+                <MagneticButton className="w-full px-6 py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white">
+                  Book Free Consultation
+                </MagneticButton>
+              </div>
             </div>
           </motion.div>
 
@@ -96,18 +98,18 @@ export default function CTASection() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-white/80">Full Name</label>
-                    <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="John Doe" />
+                    <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="John Doe" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-white/80">Email Address</label>
-                    <input type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="john@company.com" />
+                    <input type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="john@company.com" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-white/80">Project Description</label>
                   <textarea required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="Tell us about your automation needs..."></textarea>
                 </div>
-                <button type="submit" className="w-full group relative overflow-hidden rounded-xl bg-primary px-8 py-4 font-medium text-primary-foreground transition-colors hover:bg-blue-500">
+                <button type="submit" className="w-full group relative overflow-hidden rounded-xl bg-primary px-8 py-4 min-h-[48px] font-medium text-primary-foreground transition-colors hover:bg-blue-500">
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     Send Message <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>

@@ -39,7 +39,7 @@ export default function StatisticsSection() {
   return (
     <section className="py-20 border-y border-white/5 bg-blue-950/10 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10" />
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-5 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x divide-white/5">
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center justify-center text-center px-4">
