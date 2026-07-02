@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, Code2, Globe2, LayoutTemplate, Zap } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Code2, Globe2, LayoutTemplate, Zap, MessageCircle, Users, Bot, Calendar, Activity } from "lucide-react";
 import { MagneticButton } from "../ui/magnetic-button";
 
 const stats = [
@@ -10,6 +10,158 @@ const stats = [
   { label: "Powered", value: "AI", icon: Zap },
   { label: "Tech Stack", value: "Modern", icon: Code2 },
 ];
+
+const WhatsAppMockup = () => (
+  <>
+    <div className="absolute inset-0 bg-[#020817]/90" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0%,transparent_50%)] animate-pulse" />
+
+    <div className="relative w-full h-full flex flex-col items-center justify-end z-10">
+       <div className="absolute top-6 left-0 right-0 flex flex-col items-center">
+         <h4 className="text-xl font-bold text-white mb-1 drop-shadow-lg tracking-tight">AI WhatsApp Business</h4>
+         <p className="text-[10px] text-blue-200/70 font-medium tracking-wide">Automate. Capture. Scale.</p>
+       </div>
+
+       <div className="relative w-full flex justify-center items-end mt-16 h-[120px]">
+         {/* Main WhatsApp Phone UI Mockup */}
+         <div className="w-[60%] sm:w-[50%] h-full bg-[#0a1128] border border-white/10 border-b-0 rounded-t-2xl shadow-[0_0_40px_rgba(59,130,246,0.2)] relative z-20 flex flex-col group-hover:-translate-y-3 transition-transform duration-700 ease-out">
+           <div className="bg-[#0f172a] p-2 rounded-t-2xl border-b border-white/5 flex items-center justify-between">
+             <div className="flex items-center gap-1.5">
+               <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center">
+                 <Bot className="w-2.5 h-2.5 text-blue-400" />
+               </div>
+               <div className="text-[9px] font-medium text-white">AI Assistant</div>
+             </div>
+             <div className="flex gap-0.5">
+               <div className="w-1 h-1 rounded-full bg-white/20" />
+               <div className="w-1 h-1 rounded-full bg-white/20" />
+               <div className="w-1 h-1 rounded-full bg-white/20" />
+             </div>
+           </div>
+           <div className="flex-1 p-3 flex flex-col gap-2.5 overflow-hidden">
+             <div className="bg-white/5 rounded-lg rounded-tl-none p-2 w-[75%] self-start border border-white/5 backdrop-blur-sm">
+               <div className="w-full h-1.5 bg-white/20 rounded mb-1.5" />
+               <div className="w-1/2 h-1.5 bg-white/20 rounded" />
+             </div>
+             <div className="bg-blue-600/20 rounded-lg rounded-tr-none p-2 w-[85%] self-end border border-blue-500/30 backdrop-blur-sm">
+               <div className="w-full h-1.5 bg-blue-200/50 rounded mb-1.5" />
+               <div className="w-3/4 h-1.5 bg-blue-200/50 rounded mb-1.5" />
+               <div className="w-1/3 h-1.5 bg-blue-200/50 rounded" />
+             </div>
+           </div>
+         </div>
+
+         {/* Floating Notification */}
+         <div className="absolute right-[5%] top-0 w-32 bg-white/10 backdrop-blur-md border border-blue-500/30 rounded-lg p-2 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-30 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-700 delay-75">
+            <div className="flex items-center gap-1.5">
+              <div className="w-5 h-5 rounded-full bg-yellow-500/20 flex items-center justify-center shrink-0">
+                <Zap className="w-3 h-3 text-yellow-400" />
+              </div>
+              <div className="text-[9px] font-semibold text-white leading-tight">New Lead Captured</div>
+            </div>
+         </div>
+         
+         {/* Floating CRM Card */}
+         <div className="absolute left-[5%] bottom-6 w-28 bg-[#0a1128]/90 backdrop-blur-xl border border-white/10 rounded-lg p-2 shadow-2xl z-30 group-hover:-translate-x-2 group-hover:translate-y-1 transition-all duration-700 delay-150">
+           <div className="flex items-center gap-1.5 mb-2">
+             <Users className="w-3.5 h-3.5 text-blue-400" />
+             <div className="text-[8px] font-medium text-white/70">CRM Sync</div>
+           </div>
+           <div className="w-full h-1 bg-green-400/50 rounded mb-1" />
+           <div className="w-4/5 h-1 bg-white/10 rounded" />
+         </div>
+         
+         {/* Floating WhatsApp Icon */}
+         <div className="absolute left-[20%] top-6 w-8 h-8 bg-green-500/10 backdrop-blur-md border border-green-500/30 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.2)] z-10 animate-pulse">
+           <MessageCircle className="w-4 h-4 text-green-400" />
+         </div>
+       </div>
+    </div>
+  </>
+);
+
+const MediFlowMockup = () => (
+  <>
+    <div className="absolute inset-0 bg-[#020817]/90" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(79,70,229,0.15)_0%,transparent_50%)] animate-pulse" style={{ animationDuration: '4s' }} />
+
+    <div className="relative w-full h-full flex flex-col items-center justify-end z-10">
+       <div className="absolute top-6 left-0 right-0 flex flex-col items-center">
+         <h4 className="text-xl font-bold text-white mb-1 drop-shadow-lg tracking-tight">MediFlow AI</h4>
+         <p className="text-[10px] text-indigo-200/70 font-medium tracking-wide">AI-Powered Clinic Management</p>
+       </div>
+
+       <div className="relative w-full flex justify-center items-end mt-16 h-[120px]">
+         {/* Main Dashboard Panel */}
+         <div className="w-[85%] h-full bg-[#0a1128] border border-white/10 border-b-0 rounded-t-xl shadow-[0_0_40px_rgba(79,70,229,0.2)] relative z-20 flex flex-col p-2.5 group-hover:-translate-y-3 transition-transform duration-700 ease-out">
+            <div className="flex justify-between items-center mb-3 px-1">
+              <div className="flex items-center gap-1.5">
+                <Activity className="w-4 h-4 text-indigo-400" />
+                <div className="text-[10px] font-semibold text-white">Clinic Dashboard</div>
+              </div>
+              <div className="flex gap-1.5">
+                 <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                 <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              <div className="bg-white/5 rounded-lg p-2 border border-white/5 flex flex-col justify-center">
+                <div className="text-[7px] text-white/50 mb-1">Total Patients</div>
+                <div className="w-full h-1.5 bg-indigo-400/80 rounded" />
+              </div>
+              <div className="bg-white/5 rounded-lg p-2 border border-white/5 flex flex-col justify-center">
+                <div className="text-[7px] text-white/50 mb-1">Appointments</div>
+                <div className="w-3/4 h-1.5 bg-purple-400/80 rounded" />
+              </div>
+              <div className="bg-white/5 rounded-lg p-2 border border-white/5 flex flex-col justify-center">
+                <div className="text-[7px] text-white/50 mb-1">Revenue</div>
+                <div className="w-4/5 h-1.5 bg-emerald-400/80 rounded" />
+              </div>
+            </div>
+            
+            <div className="flex-1 bg-gradient-to-t from-indigo-500/10 to-transparent rounded border border-white/5 relative overflow-hidden flex items-end px-2">
+               {/* Simulated Chart Bars */}
+               <div className="w-full flex justify-between items-end h-[80%] gap-1 opacity-70">
+                 <div className="w-full h-[40%] bg-indigo-500/30 rounded-t-sm" />
+                 <div className="w-full h-[60%] bg-indigo-500/30 rounded-t-sm" />
+                 <div className="w-full h-[30%] bg-indigo-500/30 rounded-t-sm" />
+                 <div className="w-full h-[80%] bg-indigo-500/50 rounded-t-sm" />
+                 <div className="w-full h-[50%] bg-indigo-500/30 rounded-t-sm" />
+                 <div className="w-full h-[90%] bg-indigo-500/60 rounded-t-sm" />
+                 <div className="w-full h-[70%] bg-indigo-500/40 rounded-t-sm" />
+               </div>
+            </div>
+         </div>
+
+         {/* AI Receptionist Card */}
+         <div className="absolute right-[2%] top-2 w-32 bg-[#0f172a]/90 backdrop-blur-xl border border-indigo-500/40 rounded-lg p-2 shadow-[0_0_20px_rgba(99,102,241,0.25)] z-30 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-700 delay-75">
+            <div className="flex items-center gap-2 mb-2">
+              <Bot className="w-3.5 h-3.5 text-indigo-300" />
+              <div className="text-[9px] font-semibold text-white">AI Receptionist</div>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <div className="w-full h-1 bg-indigo-400/50 rounded" />
+              <div className="w-2/3 h-1 bg-white/20 rounded" />
+            </div>
+         </div>
+
+         {/* Calendar/Appointment Card */}
+         <div className="absolute left-[2%] bottom-6 w-28 bg-[#0f172a]/90 backdrop-blur-xl border border-white/10 rounded-lg p-2 shadow-2xl z-30 group-hover:-translate-x-2 group-hover:translate-y-1 transition-all duration-700 delay-150">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Calendar className="w-3.5 h-3.5 text-purple-400" />
+              <div className="text-[9px] font-medium text-white/80">Schedule</div>
+            </div>
+            <div className="space-y-1.5">
+              <div className="w-full h-1 bg-white/20 rounded" />
+              <div className="w-3/4 h-1 bg-white/10 rounded" />
+              <div className="w-5/6 h-1 bg-white/10 rounded" />
+            </div>
+         </div>
+       </div>
+    </div>
+  </>
+);
 
 const projects = [
   {
@@ -21,6 +173,7 @@ const projects = [
     liveDemo: "https://ai-whatsapp-landing-page.vercel.app",
     color: "from-blue-500/20 to-cyan-500/20",
     border: "hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]",
+    mockup: <WhatsAppMockup />
   },
   {
     title: "MediFlow AI – Clinic Management",
@@ -31,6 +184,7 @@ const projects = [
     liveDemo: "https://ai-clinic-management-system-two.vercel.app",
     color: "from-indigo-500/20 to-purple-500/20",
     border: "hover:border-indigo-500/50 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]",
+    mockup: <MediFlowMockup />
   }
 ];
 
@@ -79,18 +233,8 @@ export default function PortfolioSection() {
               className={`group glass-card rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] ${project.border} transition-all duration-500 hover:-translate-y-2 flex flex-col`}
             >
               {/* Mockup Container */}
-              <div className={`h-64 bg-gradient-to-br ${project.color} relative overflow-hidden flex items-end justify-center p-6 pb-0 border-b border-white/10 shrink-0`}>
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-5 mix-blend-luminosity" />
-                
-                {/* Laptop Mockup Abstraction */}
-                <div className="w-4/5 h-[90%] bg-[#0f172a] rounded-t-xl border-x-4 border-t-4 border-gray-800 relative shadow-2xl group-hover:-translate-y-2 transition-transform duration-500">
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gray-600" />
-                  <div className="w-full h-full bg-gradient-to-b from-blue-900/20 to-transparent p-4 flex flex-col gap-3">
-                    <div className="w-1/3 h-4 bg-white/10 rounded" />
-                    <div className="w-full h-2 bg-white/5 rounded" />
-                    <div className="w-3/4 h-2 bg-white/5 rounded" />
-                  </div>
-                </div>
+              <div className={`h-64 bg-gradient-to-br ${project.color} relative overflow-hidden flex items-end justify-center p-0 border-b border-white/10 shrink-0`}>
+                {project.mockup}
               </div>
               
               <div className="p-8 flex flex-col flex-1">
