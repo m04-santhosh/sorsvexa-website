@@ -118,6 +118,18 @@ export default function HeroSection() {
                 </MagneticButton>
               </a>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="mt-6 flex items-center w-fit gap-2 px-4 py-2 rounded-full bg-white/5 border border-blue-500/30 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-shadow duration-500"
+            >
+              <Sparkles className="h-4 w-4 text-blue-400" />
+              <span className="text-[13px] sm:text-sm font-medium text-white drop-shadow-[0_0_10px_rgba(96,165,250,0.6)]">
+                Helping Businesses Automate with AI
+              </span>
+            </motion.div>
           </motion.div>
 
           {/* Right Content - Premium AI Command Center Visualization */}
