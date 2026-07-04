@@ -8,32 +8,32 @@ const cards = [
   {
     icon: Bot,
     title: "AI-First Solutions",
-    description: "Every solution is designed with AI at its core to automate repetitive tasks, reduce manual work, and improve business efficiency.",
+    description: "Every solution is built with AI at its core to automate repetitive work and improve efficiency.",
   },
   {
     icon: Zap,
     title: "Fast Delivery",
-    description: "Rapid development using modern technologies and streamlined workflows without compromising quality.",
+    description: "Rapid project delivery using modern technologies without sacrificing quality.",
   },
   {
     icon: Palette,
     title: "Premium UI/UX",
-    description: "Modern, responsive, and conversion-focused interfaces that create outstanding customer experiences.",
+    description: "Beautiful, responsive and conversion-focused digital experiences.",
   },
   {
     icon: TrendingUp,
     title: "Built for Growth",
-    description: "Scalable websites, automation systems, and AI solutions designed to grow alongside your business.",
+    description: "Scalable solutions that grow with your business.",
   },
   {
     icon: Lock,
     title: "Secure & Reliable",
-    description: "Developed with modern technologies, best practices, secure architecture, and performance optimization.",
+    description: "Built using secure architectures and modern development practices.",
   },
   {
     icon: Handshake,
     title: "Ongoing Support",
-    description: "From launch to long-term improvements, we continue supporting your business with updates, maintenance, and AI enhancements.",
+    description: "Continuous support after launch with updates and improvements.",
   },
 ];
 
@@ -56,7 +56,7 @@ const cardVariants = {
 
 export default function WhyBusinessesChooseSorsvexa() {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden flex flex-col items-center">
+    <section id="why-sorsvexa" className="relative py-24 lg:py-32 overflow-hidden flex flex-col items-center">
       {/* Background cinematic elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
@@ -98,7 +98,7 @@ export default function WhyBusinessesChooseSorsvexa() {
           >
             <Sparkles className="h-4 w-4 text-blue-400" />
             <span className="text-sm font-medium text-white drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">
-              Why Sorsvexa
+              Why Choose Sorsvexa
             </span>
           </motion.div>
           
@@ -119,7 +119,7 @@ export default function WhyBusinessesChooseSorsvexa() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-[16px] md:text-[18px] text-muted-foreground leading-relaxed"
           >
-            We don't just build websites—we engineer intelligent AI solutions that automate operations, improve customer experiences, and help businesses grow faster.
+            We don't just build websites—we build intelligent AI solutions that automate operations, improve customer experiences, and help businesses grow faster.
           </motion.p>
         </div>
 
@@ -169,7 +169,7 @@ export default function WhyBusinessesChooseSorsvexa() {
             Ready to Transform Your Business?
           </h3>
           <p className="text-muted-foreground mb-8">
-            Let's build intelligent AI solutions that save time, increase efficiency, and accelerate your business growth.
+            Let's build an AI-powered solution for your business.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             <a href="#contact" className="w-full sm:w-auto">
@@ -182,7 +182,7 @@ export default function WhyBusinessesChooseSorsvexa() {
             </a>
             <a href="#portfolio" className="w-full sm:w-auto">
               <MagneticButton className="w-full sm:w-auto px-8 py-4 text-base bg-white/5 border border-white/10 hover:bg-white/10 text-white">
-                Explore Our Portfolio
+                Explore Portfolio
               </MagneticButton>
             </a>
           </div>
