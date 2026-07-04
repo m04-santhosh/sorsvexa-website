@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 import HeroSection from "@/components/sections/hero";
 import TrustedBySection from "@/components/sections/trusted-by";
 import ServicesSection from "@/components/sections/services";
-import WhyChooseUsSection from "@/components/sections/why-choose-us";
+import WhyBusinessesChooseSorsvexa from "@/components/sections/why-businesses-choose";
 import IndustriesSection from "@/components/sections/industries";
 import ProcessSection from "@/components/sections/process";
 import PortfolioSection from "@/components/sections/portfolio";
@@ -22,7 +22,7 @@ export default function Home() {
         <HeroSection />
         <TrustedBySection />
         <ServicesSection />
-        <WhyChooseUsSection />
+        <WhyBusinessesChooseSorsvexa />
         <IndustriesSection />
         <ProcessSection />
         <PortfolioSection />
