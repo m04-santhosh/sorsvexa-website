@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
     const {
       full_name,
       company_name,
@@ -15,47 +16,71 @@ export async function POST(request: Request) {
       message,
     } = body;
 
-    // Reject empty required fields. Full name, email and message are collected in the UI.
+    // Required fields
     if (!full_name || !email || !message) {
       return NextResponse.json(
-        { success: false, message: "Missing required fields." },
-        { status: 400 }
+        {
+          success: false,
+          message: "Missing required fields.",
+        },
+        {
+          status: 400,
+        }
       );
     }
 
-    // Insert the submitted data into the Supabase table
-    const { error } = await supabase.from("consultation_requests").insert([
-      {
-        full_name,
-        company_name: company_name || null,
-        email,
-        phone: phone || null,
-        industry: industry || null,
-        service: service || null,
-        budget: budget || null,
-        message,
-        status: "New Lead",
-        source: "Website",
-      },
-    ]);
+    // Insert into Supabase
+    const { data, error } = await supabase
+      .from("consultations")
+      .insert([
+        {
+          full_name: full_name,
+          company: company_name || null,
+          email: email,
+          phone: phone || null,
+          business_type: industry || null,
+          service: service || null,
+          message: message,
+          status: "New Lead",
+        },
+      ])
+      .select();
 
     if (error) {
-      console.error("Supabase insert error:", error);
+      console.error("Supabase Error:", error);
+
       return NextResponse.json(
-        { success: false, message: "Failed to submit consultation request." },
-        { status: 500 }
+        {
+          success: false,
+          message: error.message,
+        },
+        {
+          status: 500,
+        }
       );
     }
 
     return NextResponse.json(
-      { success: true, message: "Consultation request submitted successfully." },
-      { status: 200 }
+      {
+        success: true,
+        message: "Consultation submitted successfully.",
+        data,
+      },
+      {
+        status: 200,
+      }
     );
-  } catch (error) {
-    console.error("API error:", error);
+  } catch (err) {
+    console.error("Server Error:", err);
+
     return NextResponse.json(
-      { success: false, message: "Failed to submit consultation request." },
-      { status: 500 }
+      {
+        success: false,
+        message: "Internal Server Error",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
