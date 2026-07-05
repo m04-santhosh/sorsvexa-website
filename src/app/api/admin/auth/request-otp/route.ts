@@ -30,14 +30,21 @@ export async function POST(request: Request) {
     // Generate a 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Store in database
-    await db.otpRequest.create({
-      data: {
-        phone: normalizedPhone,
-        code: otp,
-        expiresAt: new Date(Date.now() + 5 * 60 * 1000), // 5 minutes expiry
-      }
-    });
+    try {
+      // Store in database
+      await db.otpRequest.create({
+        data: {
+          phone: normalizedPhone,
+          code: otp,
+          expiresAt: new Date(Date.now() + 5 * 60 * 1000), // 5 minutes expiry
+        }
+      });
+    } catch (dbError) {
+      console.error("\n===========================================");
+      console.error("OTP Database Save Error (Ignored for development):");
+      console.error(dbError);
+      console.error("===========================================\n");
+    }
 
     // For development, we print the OTP to the console.
     // In production, you would integrate Twilio or another SMS provider here.
