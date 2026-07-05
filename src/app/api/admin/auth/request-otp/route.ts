@@ -2,8 +2,8 @@ export const runtime = 'nodejs';
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-// Normalized admin phone number for comparison
-const ADMIN_PHONE = process.env.ADMIN_PHONE?.replace(/\D/g, "") || "917019820571";
+// Allowed admin phone number
+const ADMIN_PHONE = "7019820571";
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +13,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Phone number is required" }, { status: 400 });
     }
 
-    const normalizedPhone = phone.replace(/\D/g, "");
+    let normalizedPhone = phone.replace(/\D/g, "");
+    
+    // If it starts with country code 91, strip it for consistent comparison
+    if (normalizedPhone.startsWith("91") && normalizedPhone.length === 12) {
+      normalizedPhone = normalizedPhone.substring(2);
+    }
+
+    console.log(`[AUTH DEBUG] Entered Phone: ${phone} (Normalized: ${normalizedPhone})`);
+    console.log(`[AUTH DEBUG] Allowed Admin Phone: ${ADMIN_PHONE}`);
 
     if (normalizedPhone !== ADMIN_PHONE) {
       return NextResponse.json({ message: "Unauthorized Admin" }, { status: 401 });
@@ -44,4 +52,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
-
