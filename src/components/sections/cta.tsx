@@ -1,20 +1,87 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MagneticButton } from "../ui/magnetic-button";
-import { Phone, Mail, Calendar, ArrowRight } from "lucide-react";
+import { Phone, Mail, Calendar, ArrowRight, Loader2, XCircle } from "lucide-react";
 
 export default function CTASection() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsLoading(true);
+    setToast(null);
+
+    const formData = new FormData(e.currentTarget);
+    const full_name = formData.get("full_name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name,
+          email,
+          message,
+        }),
+      });
+
+      if (response.ok) {
+        setToast({
+          type: "success",
+          message: "🎉 Thank you!\nYour consultation request has been received.\nOur team will contact you within 24 hours.",
+        });
+        formRef.current?.reset();
+      } else {
+        throw new Error("Failed");
+      }
+    } catch (error) {
+      setToast({
+        type: "error",
+        message: "Something went wrong.\nPlease try again later.",
+      });
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setToast(null), 8000);
+    }
   };
 
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
+      {/* Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-4 px-6 py-4 rounded-2xl border backdrop-blur-xl shadow-2xl ${
+              toast.type === "success" 
+                ? "bg-green-500/10 border-green-500/20 text-green-500" 
+                : "bg-red-500/10 border-red-500/20 text-red-500"
+            }`}
+          >
+            {toast.type === "success" ? (
+              <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                <span className="text-xl">🎉</span>
+              </div>
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
+                <XCircle className="w-5 h-5" />
+              </div>
+            )}
+            <div className="flex flex-col">
+              <p className="font-medium text-white whitespace-pre-line text-sm md:text-base leading-relaxed">{toast.message}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="absolute inset-0 bg-blue-600/5" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
       
@@ -83,39 +150,35 @@ export default function CTASection() {
             transition={{ duration: 0.6 }}
             className="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden border-blue-500/20 shadow-[0_0_50px_rgba(37,99,235,0.1)]"
           >
-            {isSubmitted ? (
-              <div className="h-full min-h-[400px] flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Thank you for contacting Sorsvexa.</h3>
-                <p className="text-muted-foreground">Our team will reach out to you shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-white/80">Full Name</label>
-                    <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="John Doe" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-white/80">Email Address</label>
-                    <input type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="john@company.com" />
-                  </div>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-white/80">Full Name</label>
+                  <input name="full_name" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Project Description</label>
-                  <textarea required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="Tell us about your automation needs..."></textarea>
+                  <label className="text-sm font-medium text-white/80">Email Address</label>
+                  <input name="email" type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="john@company.com" />
                 </div>
-                <button type="submit" className="w-full group relative overflow-hidden rounded-xl bg-primary px-8 py-4 min-h-[48px] font-medium text-primary-foreground transition-colors hover:bg-blue-500">
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Send Message <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </button>
-              </form>
-            )}
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/80">Project Description</label>
+                <textarea name="message" required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="Tell us about your automation needs..."></textarea>
+              </div>
+              <button disabled={isLoading} type="submit" className="w-full group relative overflow-hidden rounded-xl bg-primary px-8 py-4 min-h-[48px] font-medium text-primary-foreground transition-colors hover:bg-blue-500 disabled:opacity-70 disabled:cursor-not-allowed">
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting...
+                    </>
+                  ) : (
+                    <>
+                      Send Message <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </>
+                  )}
+                </span>
+              </button>
+            </form>
           </motion.div>
 
         </div>
