@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
@@ -29,42 +28,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // Insert into Supabase
-    const { data, error } = await supabase
-      .from("consultations")
-      .insert([
-        {
-          full_name: full_name,
-          company: company_name || null,
-          email: email,
-          phone: phone || null,
-          business_type: industry || null,
-          service: service || null,
-          message: message,
-          status: "New Lead",
-        },
-      ])
-      .select();
-
-    if (error) {
-      console.error("Supabase Error:", error);
-
-      return NextResponse.json(
-        {
-          success: false,
-          message: error.message,
-        },
-        {
-          status: 500,
-        }
-      );
-    }
+    // Temporarily returning success without saving since Supabase was removed
+    console.log("Received consultation request:", {
+      full_name,
+      company_name,
+      email,
+      phone,
+      industry,
+      service,
+      budget,
+      message,
+    });
 
     return NextResponse.json(
       {
         success: true,
         message: "Consultation submitted successfully.",
-        data,
+        data: [],
       },
       {
         status: 200,
