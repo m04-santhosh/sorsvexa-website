@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
     } = body;
 
     // Required fields
-    if (!full_name || !email || !message) {
+    if (!full_name || !email || !message || !phone) {
       return NextResponse.json(
         {
           success: false,
@@ -28,23 +29,27 @@ export async function POST(request: Request) {
       );
     }
 
-    // Temporarily returning success without saving since Supabase was removed
-    console.log("Received consultation request:", {
-      full_name,
-      company_name,
-      email,
-      phone,
-      industry,
-      service,
-      budget,
-      message,
+    // Save to SQLite via Prisma
+    const booking = await db.booking.create({
+      data: {
+        fullName: full_name,
+        company: company_name || null,
+        email,
+        phone,
+        industry: industry || null,
+        service: service || null,
+        budget: budget || null,
+        description: message,
+      },
     });
+
+    console.log("Saved consultation request:", booking);
 
     return NextResponse.json(
       {
         success: true,
         message: "Consultation submitted successfully.",
-        data: [],
+        data: booking,
       },
       {
         status: 200,
