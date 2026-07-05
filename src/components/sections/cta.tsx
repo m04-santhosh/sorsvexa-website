@@ -17,7 +17,12 @@ export default function CTASection() {
 
     const formData = new FormData(e.currentTarget);
     const full_name = formData.get("full_name") as string;
+    const company_name = formData.get("company_name") as string;
     const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const industry = formData.get("industry") as string;
+    const service = formData.get("service") as string;
+    const budget = formData.get("budget") as string;
     const message = formData.get("message") as string;
 
     try {
@@ -26,7 +31,12 @@ export default function CTASection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           full_name,
+          company_name,
           email,
+          phone,
+          industry,
+          service,
+          budget,
           message,
         }),
       });
@@ -34,7 +44,7 @@ export default function CTASection() {
       if (response.ok) {
         setToast({
           type: "success",
-          message: "🎉 Thank you!\nYour consultation request has been received.\nOur team will contact you within 24 hours.",
+          message: "Thank you! Your consultation request has been received. Our team will contact you shortly.",
         });
         formRef.current?.reset();
       } else {
@@ -153,16 +163,68 @@ export default function CTASection() {
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Full Name</label>
+                  <label className="text-sm font-medium text-white/80">Full Name *</label>
                   <input name="full_name" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Email Address</label>
-                  <input name="email" type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="john@company.com" />
+                  <label className="text-sm font-medium text-white/80">Company Name</label>
+                  <input name="company_name" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="Acme Corp" />
                 </div>
               </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-white/80">Business Email *</label>
+                  <input name="email" type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="john@company.com" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-white/80">Phone Number *</label>
+                  <input name="phone" type="tel" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="+91 00000 00000" />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-white/80">Industry</label>
+                  <select name="industry" defaultValue="" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors [&>option]:bg-[#050816] [&>option]:text-white">
+                    <option value="" disabled>Select Industry</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Education">Education</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-white/80">Service Required</label>
+                  <select name="service" defaultValue="" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors [&>option]:bg-[#050816] [&>option]:text-white">
+                    <option value="" disabled>Select Service</option>
+                    <option value="AI Chatbot">AI Chatbot</option>
+                    <option value="WhatsApp Automation">WhatsApp Automation</option>
+                    <option value="CRM Automation">CRM Automation</option>
+                    <option value="AI Website">AI Website</option>
+                    <option value="AI Voice Agent">AI Voice Agent</option>
+                    <option value="Custom AI Solution">Custom AI Solution</option>
+                  </select>
+                </div>
+              </div>
+
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/80">Project Description</label>
+                <label className="text-sm font-medium text-white/80">Estimated Budget</label>
+                <select name="budget" defaultValue="" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 min-h-[48px] text-white focus:outline-none focus:border-blue-500 transition-colors [&>option]:bg-[#050816] [&>option]:text-white">
+                  <option value="" disabled>Select Budget</option>
+                  <option value="Under ₹25,000">Under ₹25,000</option>
+                  <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                  <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                  <option value="Above ₹1,00,000">Above ₹1,00,000</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/80">Project Description *</label>
                 <textarea name="message" required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="Tell us about your automation needs..."></textarea>
               </div>
               <button disabled={isLoading} type="submit" className="w-full group relative overflow-hidden rounded-xl bg-primary px-8 py-4 min-h-[48px] font-medium text-primary-foreground transition-colors hover:bg-blue-500 disabled:opacity-70 disabled:cursor-not-allowed">
@@ -173,7 +235,7 @@ export default function CTASection() {
                     </>
                   ) : (
                     <>
-                      Send Message <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      Book Free Consultation <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </>
                   )}
                 </span>
