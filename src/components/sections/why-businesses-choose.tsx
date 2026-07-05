@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MagneticButton } from "../ui/magnetic-button";
 import { Bot, Zap, Palette, TrendingUp, Lock, Handshake, ArrowRight, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const cards = [
   {
@@ -55,6 +56,12 @@ const cardVariants: any = {
 };
 
 export default function WhyBusinessesChooseSorsvexa() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section id="why-sorsvexa" className="relative py-24 lg:py-32 overflow-hidden flex flex-col items-center">
       {/* Background cinematic elements */}
@@ -63,7 +70,7 @@ export default function WhyBusinessesChooseSorsvexa() {
 
       {/* Floating particles */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-50">
-        {[...Array(15)].map((_, i) => (
+        {mounted && [...Array(15)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute h-1 w-1 rounded-full bg-blue-400/30 blur-[1px]"
