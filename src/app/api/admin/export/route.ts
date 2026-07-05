@@ -1,3 +1,4 @@
+export const runtime = 'nodejs';
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
@@ -67,3 +68,4 @@ export async function GET() {
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
+

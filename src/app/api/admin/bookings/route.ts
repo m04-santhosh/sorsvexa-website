@@ -1,3 +1,4 @@
+export const runtime = 'nodejs';
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { Prisma } from "@prisma/client";
@@ -59,3 +60,4 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
+
