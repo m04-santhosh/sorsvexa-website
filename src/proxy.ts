@@ -8,37 +8,49 @@ const encodedKey = new TextEncoder().encode(secretKey);
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  // Define protected routes
-  const isProtectedRoute = path.startsWith('/admin/dashboard') || path.startsWith('/admin/bookings');
-  
-  if (isProtectedRoute) {
+  // Protect /admin UI routes (except login and register)
+  if (
+    path.startsWith('/admin') &&
+    !path.startsWith('/admin/login') &&
+    !path.startsWith('/admin/register')
+  ) {
     const cookie = request.cookies.get('admin_session')?.value;
-    
     if (!cookie) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
-
     try {
-      await jwtVerify(cookie, encodedKey, {
-        algorithms: ["HS256"],
-      });
-      return NextResponse.next();
+      await jwtVerify(cookie, encodedKey, { algorithms: ["HS256"] });
     } catch (error) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
 
-  // Redirect authenticated users away from login page
-  if (path === '/admin/login' || path === '/admin') {
+  // Protect /api/admin API routes (except auth and export)
+  if (
+    path.startsWith('/api/admin') &&
+    !path.startsWith('/api/admin/auth') &&
+    !path.startsWith('/api/admin/export')
+  ) {
+    const cookie = request.cookies.get('admin_session')?.value;
+    if (!cookie) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    try {
+      await jwtVerify(cookie, encodedKey, { algorithms: ["HS256"] });
+    } catch (error) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+  }
+
+  // Redirect authenticated users away from login/register pages
+  if (path === '/admin/login' || path === '/admin/register' || path === '/admin') {
     const cookie = request.cookies.get('admin_session')?.value;
     if (cookie) {
       try {
-        await jwtVerify(cookie, encodedKey, {
-          algorithms: ["HS256"],
-        });
+        await jwtVerify(cookie, encodedKey, { algorithms: ["HS256"] });
         return NextResponse.redirect(new URL('/admin/dashboard', request.url));
       } catch (error) {
-        // invalid token, let them go to login
+        // invalid token, let them continue
       }
     }
     
@@ -51,5 +63,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin', '/admin/login', '/admin/dashboard/:path*', '/admin/bookings/:path*'],
+  matcher: ['/admin/:path*', '/api/admin/:path*'],
 };

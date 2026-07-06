@@ -13,9 +13,12 @@ export default function AdminLayout({
   const pathname = usePathname();
 
   const handleLogout = async () => {
-    // Just delete the cookie
-    document.cookie = "admin_session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = "/admin";
+    try {
+      await fetch("/api/admin/auth/logout", { method: "POST" });
+    } catch (e) {
+      console.error(e);
+    }
+    window.location.href = "/admin/login";
   };
 
   const navItems = [

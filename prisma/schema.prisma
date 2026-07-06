@@ -20,10 +20,10 @@ model Booking {
   createdAt   DateTime @default(now())
 }
 
-model OtpRequest {
-  id        String   @id @default(cuid())
-  phone     String
-  code      String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+model Admin {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
 }
