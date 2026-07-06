@@ -16,29 +16,23 @@ export default function CTASection() {
     setToast(null);
 
     const formData = new FormData(e.currentTarget);
-    const fullName = formData.get("full_name") as string;
-    const company = formData.get("company_name") as string;
-    const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
-    const industry = formData.get("industry") as string;
-    const service = formData.get("service") as string;
-    const budget = formData.get("budget") as string;
-    const message = formData.get("message") as string;
+    const urlEncodedData = new URLSearchParams();
+    urlEncodedData.append("fullName", formData.get("full_name") as string);
+    urlEncodedData.append("company", (formData.get("company_name") as string) || "");
+    urlEncodedData.append("email", formData.get("email") as string);
+    urlEncodedData.append("phone", formData.get("phone") as string);
+    urlEncodedData.append("industry", (formData.get("industry") as string) || "");
+    urlEncodedData.append("service", (formData.get("service") as string) || "");
+    urlEncodedData.append("budget", (formData.get("budget") as string) || "");
+    urlEncodedData.append("message", formData.get("message") as string);
 
     try {
       const response = await fetch('https://script.google.com/macros/s/AKfycbxDUK7VrG3bK-7REUQ1fibTI1ZnGpkfmiKgMnrOEAQc1IeAJ_S5yROA5KgGFv2hriUrgw/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          company,
-          email,
-          phone,
-          industry,
-          service,
-          budget,
-          message,
-        }),
+        // By omitting the Content-Type header and passing URLSearchParams, 
+        // the browser automatically sets it to application/x-www-form-urlencoded.
+        // This makes it a "simple request" and prevents the OPTIONS preflight.
+        body: urlEncodedData,
       });
 
       const data = await response.json();
