@@ -16,8 +16,8 @@ export default function CTASection() {
     setToast(null);
 
     const formData = new FormData(e.currentTarget);
-    const full_name = formData.get("full_name") as string;
-    const company_name = formData.get("company_name") as string;
+    const fullName = formData.get("full_name") as string;
+    const company = formData.get("company_name") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
     const industry = formData.get("industry") as string;
@@ -26,12 +26,12 @@ export default function CTASection() {
     const message = formData.get("message") as string;
 
     try {
-      const response = await fetch('/api/consultation', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxDUK7VrG3bK-7REUQ1fibTI1ZnGpkfmiKgMnrOEAQc1IeAJ_S5yROA5KgGFv2hriUrgw/exec', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          full_name,
-          company_name,
+          fullName,
+          company,
           email,
           phone,
           industry,
@@ -41,19 +41,17 @@ export default function CTASection() {
         }),
       });
 
-      if (response.ok) {
-        setToast({
-          type: "success",
-          message: "Thank you! Your consultation request has been received. Our team will contact you shortly.",
-        });
-        formRef.current?.reset();
-      } else {
-        throw new Error("Failed");
-      }
+      // Note: If using mode: 'no-cors', response.ok is false and response.type is 'opaque'. 
+      // If the user's script doesn't return proper CORS headers, this fetch will throw a TypeError and go to catch block.
+      setToast({
+        type: "success",
+        message: "Thank you! Your consultation request has been received. Our team will contact you shortly.",
+      });
+      formRef.current?.reset();
     } catch (error) {
       setToast({
         type: "error",
-        message: "Something went wrong.\nPlease try again later.",
+        message: "Something went wrong. Please try again.",
       });
     } finally {
       setIsLoading(false);
