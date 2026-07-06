@@ -41,13 +41,17 @@ export default function CTASection() {
         }),
       });
 
-      // Note: If using mode: 'no-cors', response.ok is false and response.type is 'opaque'. 
-      // If the user's script doesn't return proper CORS headers, this fetch will throw a TypeError and go to catch block.
-      setToast({
-        type: "success",
-        message: "Thank you! Your consultation request has been received. Our team will contact you shortly.",
-      });
-      formRef.current?.reset();
+      const data = await response.json();
+
+      if (data.success === true) {
+        setToast({
+          type: "success",
+          message: "Thank you! Your consultation request has been received.",
+        });
+        formRef.current?.reset();
+      } else {
+        throw new Error("Failed");
+      }
     } catch (error) {
       setToast({
         type: "error",
