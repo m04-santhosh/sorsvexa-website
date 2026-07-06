@@ -16,6 +16,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Sorsvexa - Automate. Innovate. Elevate.",
   description: "Transform Your Business With Intelligent AI Automation. We build AI-powered websites, chatbots, CRM systems, WhatsApp automation, and business workflows.",
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: "Sorsvexa - Automate. Innovate. Elevate.",
     description: "Transform Your Business With Intelligent AI Automation.",
