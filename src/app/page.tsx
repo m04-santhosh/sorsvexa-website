@@ -9,7 +9,6 @@ import ProcessSection from "@/components/sections/process";
 import PortfolioSection from "@/components/sections/portfolio";
 import StatisticsSection from "@/components/sections/statistics";
 import TestimonialsSection from "@/components/sections/testimonials";
-import PricingSection from "@/components/sections/pricing";
 import FAQSection from "@/components/sections/faq";
 import CTASection from "@/components/sections/cta";
 import Footer from "@/components/footer";
@@ -30,7 +29,6 @@ export default function Home() {
         <PortfolioSection />
         <StatisticsSection />
         <TestimonialsSection />
-        <PricingSection />
         <FAQSection />
         <CTASection />
       </main>

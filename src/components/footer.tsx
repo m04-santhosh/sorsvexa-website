@@ -40,7 +40,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4 items-center md:items-start">
             <h4 className="font-heading text-lg font-semibold text-white">Quick Links</h4>
             <nav className="flex flex-col gap-2 items-center md:items-start">
-              {["Home", "About Us", "Pricing", "Contact"].map((link) => (
+              {["Home", "About Us", "Contact"].map((link) => (
                 <Link
                   key={link}
                   href="#"
