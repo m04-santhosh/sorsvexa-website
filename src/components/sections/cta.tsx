@@ -27,25 +27,23 @@ export default function CTASection() {
     urlEncodedData.append("message", formData.get("message") as string);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbxDUK7VrG3bK-7REUQ1fibTI1ZnGpkfmiKgMnrOEAQc1IeAJ_S5yROA5KgGFv2hriUrgw/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbxDUK7VrG3bK-7REUQ1fibTI1ZnGpkfmiKgMnrOEAQc1IeAJ_S5yROA5KgGFv2hriUrgw/exec', {
         method: 'POST',
         // By omitting the Content-Type header and passing URLSearchParams, 
         // the browser automatically sets it to application/x-www-form-urlencoded.
-        // This makes it a "simple request" and prevents the OPTIONS preflight.
+        // mode: 'no-cors' tells the browser not to expect CORS headers back,
+        // preventing the TypeError, but the response becomes opaque.
+        mode: 'no-cors',
         body: urlEncodedData,
       });
 
-      const data = await response.json();
-
-      if (data.success === true) {
-        setToast({
-          type: "success",
-          message: "Thank you! Your consultation request has been received.",
-        });
-        formRef.current?.reset();
-      } else {
-        throw new Error("Failed");
-      }
+      // Because the response is opaque, we cannot read data.success. 
+      // If fetch resolves without throwing a network error, we assume it successfully reached Google.
+      setToast({
+        type: "success",
+        message: "Thank you! Your consultation request has been received.",
+      });
+      formRef.current?.reset();
     } catch (error) {
       setToast({
         type: "error",
