@@ -1,6 +1,5 @@
 export const runtime = 'nodejs';
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -30,21 +29,22 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save to SQLite via Prisma
-    const booking = await db.booking.create({
-      data: {
-        fullName: full_name,
-        company: company_name || null,
-        email,
-        phone,
-        industry: industry || null,
-        service: service || null,
-        budget: budget || null,
-        description: message,
-      },
-    });
+    // Mock saving to a database
+    const booking = {
+      id: "mock-" + Date.now(),
+      fullName: full_name,
+      company: company_name || null,
+      email,
+      phone,
+      industry: industry || null,
+      service: service || null,
+      budget: budget || null,
+      description: message,
+      status: "New",
+      createdAt: new Date().toISOString(),
+    };
 
-    console.log("Saved consultation request:", booking);
+    console.log("Mock saved consultation request:", booking);
 
     return NextResponse.json(
       {

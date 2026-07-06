@@ -85,7 +85,6 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 text-sm text-muted-foreground md:flex-row">
           <p className="text-center">© {new Date().getFullYear()} Sorsvexa. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/admin" className="hover:text-white transition-colors opacity-30 hover:opacity-100">Admin Login</Link>
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
