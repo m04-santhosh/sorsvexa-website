@@ -18,7 +18,7 @@ export default function AdminLayout({
     } catch (e) {
       console.error(e);
     }
-    window.location.href = "/admin/login";
+    window.location.href = "/admin";
   };
 
   const navItems = [

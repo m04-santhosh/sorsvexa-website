@@ -1,37 +1,36 @@
-import { NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import bcrypt from 'bcryptjs';
-import { createSession } from '@/lib/session';
+import { NextResponse } from "next/server";
+import { createSession } from "@/lib/session";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const { mobileNumber, password } = await request.json();
 
-    if (!email || !password) {
-      return NextResponse.json({ message: 'Missing email or password' }, { status: 400 });
+    if (!mobileNumber || !password) {
+      return NextResponse.json(
+        { error: "Mobile Number and Password are required" },
+        { status: 400 }
+      );
     }
 
-    // Find admin by email
-    const admin = await db.admin.findUnique({
-      where: { email },
-    });
-
-    if (!admin) {
-      return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
+    if (mobileNumber === "7019820571" && password === "Santhosh@123") {
+      // Create secure session
+      await createSession("admin");
+      
+      return NextResponse.json(
+        { message: "Login successful" },
+        { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        { error: "Invalid Mobile Number or Password" },
+        { status: 401 }
+      );
     }
-
-    // Verify password
-    const isPasswordValid = await bcrypt.compare(password, admin.passwordHash);
-    if (!isPasswordValid) {
-      return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
-    }
-
-    // Create session
-    await createSession(admin.id);
-
-    return NextResponse.json({ message: 'Logged in successfully' });
   } catch (error) {
-    console.error('Login Error:', error);
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+    console.error("Login error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

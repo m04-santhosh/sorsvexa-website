@@ -8,20 +8,16 @@ const encodedKey = new TextEncoder().encode(secretKey);
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  // Protect /admin UI routes (except login and register)
-  if (
-    path.startsWith('/admin') &&
-    !path.startsWith('/admin/login') &&
-    !path.startsWith('/admin/register')
-  ) {
+  // Protect /admin UI routes (except the login page at /admin)
+  if (path.startsWith('/admin/')) {
     const cookie = request.cookies.get('admin_session')?.value;
     if (!cookie) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(new URL('/admin', request.url));
     }
     try {
       await jwtVerify(cookie, encodedKey, { algorithms: ["HS256"] });
     } catch (error) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(new URL('/admin', request.url));
     }
   }
 
@@ -42,20 +38,16 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Redirect authenticated users away from login/register pages
-  if (path === '/admin/login' || path === '/admin/register' || path === '/admin') {
+  // Redirect authenticated users away from login page
+  if (path === '/admin') {
     const cookie = request.cookies.get('admin_session')?.value;
     if (cookie) {
       try {
         await jwtVerify(cookie, encodedKey, { algorithms: ["HS256"] });
         return NextResponse.redirect(new URL('/admin/dashboard', request.url));
       } catch (error) {
-        // invalid token, let them continue
+        // invalid token, let them stay on login page
       }
-    }
-    
-    if (path === '/admin') {
-       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
 
