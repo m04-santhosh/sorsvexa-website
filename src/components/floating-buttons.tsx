@@ -8,7 +8,7 @@ export default function FloatingButtons() {
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-3 md:gap-4 scale-90 md:scale-100 origin-bottom-right">
       {/* WhatsApp Button */}
       <motion.a
-        href="https://wa.me/917019820571"
+        href="https://wa.me/919742306859"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.1 }}
@@ -21,7 +21,7 @@ export default function FloatingButtons() {
 
       {/* Call Button */}
       <motion.a
-        href="tel:+917019820571"
+        href="tel:+919742306859"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition-shadow hover:shadow-blue-600/50"

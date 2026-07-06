@@ -75,7 +75,7 @@ export default function Footer() {
             <h4 className="font-heading text-lg font-semibold text-white">Contact</h4>
             <div className="flex flex-col gap-2 text-sm text-muted-foreground items-center md:items-start">
               <p>sorsvexa.agency@gmail.com</p>
-              <p>+91 7019820571</p>
+              <p>+91 9742306859</p>
               <p>Global Remote Agency</p>
             </div>
           </div>

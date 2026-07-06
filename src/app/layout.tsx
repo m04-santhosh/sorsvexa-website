@@ -41,7 +41,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     "name": "Sorsvexa",
     "email": "sorsvexa.agency@gmail.com",
-    "telephone": "+91 7019820571",
+    "telephone": "+91 9742306859",
     "description": "Transform Your Business With Intelligent AI Automation.",
   };
 

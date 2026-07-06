@@ -112,7 +112,7 @@ export default function HeroSection() {
                   </span>
                 </MagneticButton>
               </a>
-              <a href="tel:+917019820571">
+              <a href="tel:+919742306859">
                 <MagneticButton className="px-8 py-4 text-base bg-white/5 border border-white/10 hover:bg-white/10 text-white">
                   Call Now
                 </MagneticButton>

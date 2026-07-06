@@ -110,9 +110,9 @@ export default function CTASection() {
             <div className="space-y-8 mb-12">
               <div>
                 <p className="text-sm text-muted-foreground mb-2">Phone</p>
-                <a href="tel:+917019820571" className="flex items-center gap-3 text-2xl font-bold text-white hover:text-blue-400 transition-colors group">
+                <a href="tel:+919742306859" className="flex items-center gap-3 text-2xl font-bold text-white hover:text-blue-400 transition-colors group">
                   <Phone className="h-6 w-6 text-blue-500" />
-                  +91 7019820571
+                  +91 9742306859
                   <span className="text-sm font-normal text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity ml-2">(click-to-call)</span>
                 </a>
               </div>
@@ -128,7 +128,7 @@ export default function CTASection() {
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-              <a href="tel:+917019820571" className="w-full sm:w-auto">
+              <a href="tel:+919742306859" className="w-full sm:w-auto">
                 <MagneticButton className="w-full px-6 py-3">
                   Call Now
                 </MagneticButton>
