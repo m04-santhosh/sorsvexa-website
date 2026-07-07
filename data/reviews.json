@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "timestamp": "2026-07-07T00:00:00.000Z",
+    "ownerName": "Dr. Ramesh K",
+    "companyName": "RK Dental Clinic",
+    "rating": 5,
+    "review": "Sorsvexa completely transformed how we manage our patient appointments. The automated follow-ups have reduced our no-shows significantly, and the platform is incredibly easy to use. Highly recommended for any clinic looking to scale.",
+    "website": "Bengaluru",
+    "logoUrl": "",
+    "status": "Approved"
+  },
+  {
+    "id": "2",
+    "timestamp": "2026-07-07T00:01:00.000Z",
+    "ownerName": "Lakshmi Narayana",
+    "companyName": "Sri Lakshmi Builders",
+    "rating": 5,
+    "review": "Working with Sorsvexa has been a game changer for our construction business. Their lead generation and CRM tools helped us track prospective clients perfectly. The team is responsive and the technology feels like magic.",
+    "website": "Mysuru",
+    "logoUrl": "",
+    "status": "Approved"
+  },
+  {
+    "id": "3",
+    "timestamp": "2026-07-07T00:02:00.000Z",
+    "ownerName": "Vasanth Kumar",
+    "companyName": "Vasanth Enterprises",
+    "rating": 5,
+    "review": "Our entire sales pipeline is now automated thanks to Sorsvexa. We capture leads effortlessly and our conversion rates have jumped by 20%. Best investment we've made for our business growth this year.",
+    "website": "Chennai",
+    "logoUrl": "",
+    "status": "Approved"
+  }
+]
